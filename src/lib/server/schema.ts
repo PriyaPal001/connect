@@ -1,4 +1,4 @@
-import { pgTable, bigint, varchar, boolean } from "drizzle-orm/pg-core";
+import { pgTable, bigint, varchar, boolean, text } from "drizzle-orm/pg-core";
 
 export const user = pgTable("auth_user", {
 	id: varchar("id", {
@@ -39,4 +39,12 @@ export const key = pgTable("user_key", {
 	hashedPassword: varchar("hashed_password", {
 		length: 255
 	})
+});
+
+export const place = pgTable("place", {
+	// You can use { mode: "bigint" } if numbers are exceeding js number limitations
+	id: bigint("id", { mode: "number" }).primaryKey().notNull(),
+	city: text("city"),
+	area: text("area"),
+	road: text("road"),
 });
